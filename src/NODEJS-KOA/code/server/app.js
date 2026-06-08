@@ -9,9 +9,8 @@ const logger = require('koa-logger')
 const index = require('./routes/index')
 const users = require('./routes/users')
 var logger4 = require('./utils/log4js');
-logger4.info('app.js is running');
-logger4.error('app.js is running with error');
-logger4.warn('app.js is running with warn');
+const sequelize = require('./config/db');
+
 // error handler
 onerror(app)
 
@@ -32,7 +31,7 @@ app.use(async (ctx, next) => {
   const start = new Date()
   await next()
   const ms = new Date() - start
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+  logger4.info(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
 // routes
@@ -41,7 +40,7 @@ app.use(users.routes(), users.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
-  console.error('server error', err, ctx)
+  logger4.error('server error', err, ctx)
 });
 
 module.exports = app
