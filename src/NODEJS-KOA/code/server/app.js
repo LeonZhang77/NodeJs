@@ -8,6 +8,10 @@ const logger = require('koa-logger')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+var logger4 = require('./utils/log4js');
+logger4.info('app.js is running');
+logger4.error('app.js is running with error');
+logger4.warn('app.js is running with warn');
 // error handler
 onerror(app)
 
