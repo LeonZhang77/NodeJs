@@ -4,6 +4,6 @@ router.prefix('/users')
 
 router.get('/', User.listAll)
 
-router.get('/add', User.create)
+router.post('/addUser', User.create)
 
 module.exports = router

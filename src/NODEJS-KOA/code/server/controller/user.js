@@ -10,13 +10,11 @@ const listAll = async(ctx) => {
 }
 
 const create = async(ctx) => {
+    
+    const params = ctx.request.body
+    console.log('123', params)
     try {
-        const user = await User.create({ 
-            name:"张三", 
-            age: 18, 
-            sexlabel: "男", 
-            birth: '1985-3-15', 
-            address: "张家界" })
+        const user = await User.create(params)
         ctx.status = 201
         ctx.body = user
     } catch (error) {
